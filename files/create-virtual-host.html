@@ -1,0 +1,30 @@
+ Create virtual host in wamp/ubantu
+
+ 1. Create project in /var/www/html path
+ 2. Go to cd /etc/apache2/sites-available/ using command prompt
+ 3. run : nano virtualhosttest.conf (you can take any name)
+ 4. Add below mention virtualhost code in opened page
+
+ <VirtualHost *:80>
+     ServerName virtualhosttest.localhost
+     DocumentRoot /var/www/html/virtualhosttest
+     SetEnv APPLICATION_ENV "development"
+     <Directory /var/www/html/virtualhosttest>
+         DirectoryIndex index.php
+         AllowOverride All
+         Order allow,deny
+         Allow from all
+     </Directory>
+ </VirtualHost>
+
+ 5. After adding press Cnt-X and Y then enter to save and come back
+ 6. Run ls to check newly created virtualhosttest.conf file
+ 7. Run nano /etc/hosts to add virtual host in hosts file with below mentioned code
+ 127.0.0.1  virtualhosttest.localhost (Ther ServerName from virtualhosttest.conf file)
+ 8. After adding press Cnt-X and Y then enter to save and come back
+ 9. enable virtual host using below code from command prompt
+ a2ensite virtualhosttest.conf
+ 10. Restart apache using below command
+ service apache2 restart
+ 11. Run http://virtualhosttest.localhost/ from url and enjoy
+
